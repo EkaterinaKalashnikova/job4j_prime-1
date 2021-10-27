@@ -11,7 +11,7 @@ public class College {
         student.setSurname("Kalashnikova");
         student.setGroup(1);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy MMM dd HH:mm:ss");
-        Calendar data = new GregorianCalendar(2018,Calendar.AUGUST,25,13,24,56);
+        Calendar data = new GregorianCalendar(2018, Calendar.AUGUST, 25, 13, 24, 56);
         data.set(2018, Calendar.AUGUST, 25);
         student.setStart(sdf.format(data.getTime()));
         System.out.println("Имя студента: " + student.getName());
