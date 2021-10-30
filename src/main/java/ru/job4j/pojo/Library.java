@@ -15,19 +15,21 @@ public class Library {
             Book bk = books[index];
             System.out.println(bk.getName() + " - " + bk.getCount());
         }
-        System.out.println("Replace Consuelo to Clean code.");
-        Book book = new Book("Clean code", 1);
-        Book bks = new Book("Consuelo", 3);
-        books[0] = book;
-        books[3] = bks;
+        System.out.println();
+        System.out.print("Replace Consuelo to Clean code.");
+        Book tmp = books[0];
+        books[0] = books[3];
+        books[3] = tmp;
+        System.out.println();
         for (int index = 0; index < books.length; index++) {
             Book bk = books[index];
             System.out.println(bk.getName() + " - " + bk.getCount());
         }
+        System.out.println();
         System.out.println("Shown only product.name \"Clean code\"");
         for (int index = 0; index < books.length; index++) {
             Book bk = books[index];
-            if (bk.getName().equals("Clean code")) {
+            if ("Clean code".equals(bk.getName())) {
                 System.out.println(bk.getName() + " - " + bk.getCount());
             }
         }
