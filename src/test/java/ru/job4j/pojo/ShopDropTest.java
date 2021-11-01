@@ -7,7 +7,7 @@ import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 public class ShopDropTest {
-   /** @Test
+   @Test
     public void whenDropFirst() {
         Product[] products = new Product[2];
         products[0] = new Product("Milk", 10);
@@ -55,5 +55,5 @@ public class ShopDropTest {
         assertThat(rsl[index].getName(), is("Fish"));
         assertThat(rsl[3].getName(), is("Fruit"));
         assertThat(rsl[products.length - 1], is(nullValue()));
-    }*/
+    }
 }
