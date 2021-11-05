@@ -66,26 +66,12 @@ public class Tracker {
 
     public boolean replace(int id, Item item) {
         int index = indexOf(id);
-        for (int i = 0; i < items.length; i++) {
-            if (index != 0) {
-                if (items[i].getId() == index) {
-                    items[index].setName(item.getName());
-                    return true;
-                }
-            }
+        if (index != -1) {
+            item.setId(id);
+            items[index] = item;
+            return true;
         }
         return false;
     }
 }
 
-/**
- * Весь метод replace будет состоять из 5-6 строчек кода.
- * <p>
- * 1. Найти индекс ячейки по id.
- * <p>
- * 2. Проставить id с item. При замене нужно сохранять старый id.
- * <p>
- * 3. Записать в ячейку с найденным индексом объект item. Это входящий параметр.
- * <p>
- * 4. Вернуть true, если замена произведена или false, если index по id не найден.
- */
