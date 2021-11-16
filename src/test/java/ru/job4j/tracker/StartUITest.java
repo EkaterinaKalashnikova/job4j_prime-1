@@ -1,7 +1,6 @@
 package ru.job4j.tracker;
 
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
@@ -14,7 +13,7 @@ public class StartUITest {
         String[] answers = {"Fix PC"};
         Input input = new StubInput(answers);
         Tracker tracker = new Tracker();
-        StartUI.createItem(input, tracker);
+        StartUIOld.createItem(input, tracker);
         Item created = tracker.findAll()[0];
         Item expected = new Item("Fix PC");
         assertThat(created.getName(), is(expected.getName()));
@@ -29,7 +28,7 @@ public class StartUITest {
                 String.valueOf(item.getId()), /* id сохраненной заявки в объект tracker. */
                 "edited item"
         };
-        StartUI.editItem(new StubInput(answers), tracker);
+        StartUIOld.editItem(new StubInput(answers), tracker);
         Item edited = tracker.findById(item.getId());
         assertThat(edited.getName(), is("edited item"));
     }
@@ -41,7 +40,7 @@ public class StartUITest {
         tracker.add(item);
         String[] answers = {
                 String.valueOf(item.getId()), null};
-        StartUI.deleteItem(new StubInput(answers), tracker);
+        StartUIOld.deleteItem(new StubInput(answers), tracker);
         Item deleted = tracker.findById(item.getId());
         if (item == null) {
             assertThat(deleted.getName(), is("item was delete"));
