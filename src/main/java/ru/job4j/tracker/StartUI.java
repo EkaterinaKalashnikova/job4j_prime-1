@@ -16,7 +16,6 @@ public class StartUI {
         for (int index = 0; index < actions.length; index++) {
             System.out.println(index + ". " + actions[index].name());
         }
-        System.out.println("Exit Program");
     }
 
     public static void main(String[] args) {
@@ -28,7 +27,8 @@ public class StartUI {
                 new ChangeAction(),
                 new DeleteAction(),
                 new FindByIdAction(),
-                new FindByItemAction()
+                new FindByItemAction(),
+
         };
         new StartUI().init(input, tracker, actions);
     }

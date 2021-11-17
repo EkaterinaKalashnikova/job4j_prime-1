@@ -25,7 +25,7 @@ public class StartUITest {
         Item item = new Item("new item");
         tracker.add(item);
         String[] answers = {
-                String.valueOf(item.getId()), /* id сохраненной заявки в объект tracker. */
+                String.valueOf(item.getId()),
                 "edited item"
         };
         StartUIOld.editItem(new StubInput(answers), tracker);
@@ -42,8 +42,6 @@ public class StartUITest {
                 String.valueOf(item.getId()), null};
         StartUIOld.deleteItem(new StubInput(answers), tracker);
         Item deleted = tracker.findById(item.getId());
-        if (item == null) {
-            assertThat(deleted.getName(), is("item was delete"));
-        }
+        assertNull(deleted);
     }
 }

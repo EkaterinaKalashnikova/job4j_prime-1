@@ -112,4 +112,3 @@ public class StartUIOld {
         new StartUIOld().init(input, tracker);
     }
 }
-
