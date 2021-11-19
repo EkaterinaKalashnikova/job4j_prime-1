@@ -28,7 +28,7 @@ public class StartUI {
                 new DeleteAction(),
                 new FindByIdAction(),
                 new FindByItemAction(),
-
+                new ExitProgram()
         };
         new StartUI().init(input, tracker, actions);
     }
