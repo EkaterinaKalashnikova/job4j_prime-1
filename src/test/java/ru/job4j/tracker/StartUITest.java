@@ -42,6 +42,6 @@ public class StartUITest {
                 String.valueOf(item.getId()), null};
         StartUIOld.deleteItem(new StubInput(answers), tracker);
         Item deleted = tracker.findById(item.getId());
-        assertThat(null, is(deleted));
+        assertNull(tracker.findById(item.getId()));
     }
 }
