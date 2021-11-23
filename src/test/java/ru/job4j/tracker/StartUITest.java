@@ -39,7 +39,7 @@ public class StartUITest {
         Item item = new Item("new item");
         tracker.add(item);
         String[] answers = {
-                String.valueOf(item.getId()), null};
+                String.valueOf(item.getId())};
         StartUIOld.deleteItem(new StubInput(answers), tracker);
         assertNull(tracker.findById(item.getId()));
     }
