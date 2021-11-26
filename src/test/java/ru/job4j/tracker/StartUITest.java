@@ -3,6 +3,8 @@ package ru.job4j.tracker;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
@@ -43,4 +45,36 @@ public class StartUITest {
         StartUIOld.deleteItem(new StubInput(answers), tracker);
         assertNull(tracker.findById(item.getId()));
     }
+
+  /**  @Test
+    public void whenInvalidExit() {
+        Output out = new ConsoleOutput();
+        Input in = new StubInput(
+                new String[] {"0"}
+        );
+        Tracker tracker = new Tracker();
+        UserAction[] actions = new UserAction[]{
+                new ExitProgram(out)
+        };
+        new StartUI(out).init(in, tracker, actions);
+        String ln = System.lineSeparator();
+        assertThat(out.toString(), is(
+                "Menu." + ln
+                        + "0. Exit" + ln
+                        + "Wrong input, you can select: 0 .. 0" + ln
+                        + "Menu." + ln
+                        + "0. Exit" + ln
+                )
+        );
+    }
+
+    @Test
+    public void whenExit() {
+        StubInput input = new StubInput(new String[]{"0"});
+        ConsoleOutput output = new ConsoleOutput();
+        new StartUI(output).init(input, new Tracker(), new UserAction[]{});
+        assertThat(output.isCall(), is(true));
+    }*/
 }
+
+
