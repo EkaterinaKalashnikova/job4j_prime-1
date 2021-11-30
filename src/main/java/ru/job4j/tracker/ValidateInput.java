@@ -1,20 +1,6 @@
 package ru.job4j.tracker;
 
 public class ValidateInput extends ConsoleInput {
-
-    public ValidateInput(Output out, Input in) {
-        super();
-    }
-
-    public ValidateInput() {
-
-    }
-
-    @Override
-    public String askStr(String question) {
-        return super.askStr(question);
-    }
-
     @Override
     public int askInt(String question) {
         boolean invalid = true;

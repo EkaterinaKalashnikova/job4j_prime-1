@@ -1,9 +1,6 @@
 package ru.job4j.tracker;
 
-
 import org.junit.Test;
-
-import java.util.ArrayList;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
@@ -46,35 +43,56 @@ public class StartUITest {
         assertNull(tracker.findById(item.getId()));
     }
 
-  /**  @Test
-    public void whenInvalidExit() {
-        Output out = new ConsoleOutput();
-        Input in = new StubInput(
-                new String[] {"0"}
-        );
+    @Test
+    public void whenReplaceItemTestOutputIsSuccessfully() {
+        Output out = new StubOutput();
         Tracker tracker = new Tracker();
+        Item one = tracker.add(new Item("test1"));
+        String replaceName = "New Test Name";
+        Input in = new StubInput(
+                new String[]{"0", String.valueOf(one.getId()), replaceName, "1"}
+        );
         UserAction[] actions = new UserAction[]{
+                new ChangeAction(out),
                 new ExitProgram(out)
         };
         new StartUI(out).init(in, tracker, actions);
         String ln = System.lineSeparator();
         assertThat(out.toString(), is(
-                "Menu." + ln
+                "Menu:" + ln
+                        + "0. Edit item" + ln
+                        + "1. Exit Program" + ln
+                        + "=== Edit item ===" + ln
+                        + "Заявка изменена успешно." + ln
+                        + "Menu:" + ln
+                        + "0. Edit item" + ln
+                        + "1. Exit Program" + ln
+                        + "=== Exit Program ===" + ln
+        ));
+    }
+
+    @Test
+    public void whenInvalidExit() {
+        Output out = new StubOutput();
+        Input in = new StubInput(
+                new String[] {"1", "0"}
+        );
+        Tracker tracker = new Tracker();
+        UserAction[] actions = new UserAction[]{
+                new ExitAction(out)
+        };
+        new StartUI(out).init(in, tracker, actions);
+        String ln = System.lineSeparator();
+        assertThat(out.toString(), is(
+                "Menu:" + ln
                         + "0. Exit" + ln
                         + "Wrong input, you can select: 0 .. 0" + ln
-                        + "Menu." + ln
+                        + "Menu:" + ln
                         + "0. Exit" + ln
                 )
         );
     }
-
-    @Test
-    public void whenExit() {
-        StubInput input = new StubInput(new String[]{"0"});
-        ConsoleOutput output = new ConsoleOutput();
-        new StartUI(output).init(input, new Tracker(), new UserAction[]{});
-        assertThat(output.isCall(), is(true));
-    }*/
 }
+
 
 

@@ -1,20 +1,20 @@
 package ru.job4j.tracker;
 
 public class StubOutput implements Output {
-    private boolean call = false;
+    private final StringBuilder buffer = new StringBuilder();
 
     @Override
-    public String name() {
-        return "Stub output";
+    public void println(Object obj) {
+        if (obj != null) {
+            buffer.append(obj.toString());
+        } else {
+            buffer.append("null");
+        }
+        buffer.append(System.lineSeparator());
     }
 
     @Override
-    public boolean execute(Input input, Tracker tracker) {
-        call = true;
-        return false;
-    }
-
-    public boolean isCall() {
-        return call;
+    public String toString() {
+        return buffer.toString();
     }
 }
