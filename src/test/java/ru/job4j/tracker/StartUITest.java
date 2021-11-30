@@ -79,7 +79,7 @@ public class StartUITest {
         );
         Tracker tracker = new Tracker();
         UserAction[] actions = new UserAction[]{
-                new ExitAction(out)
+                new ExitAction()
         };
         new StartUI(out).init(in, tracker, actions);
         String ln = System.lineSeparator();
