@@ -13,7 +13,6 @@ public class Departments {
             }
         }
         List<String> rsl = new ArrayList<>(tmp);
-        rsl.sort(Comparator.naturalOrder());
         return rsl;
     }
 
