@@ -21,7 +21,7 @@ public class AttachmentSort {
         };
         attachments.sort(comparator);
         System.out.println(attachments);
-        Comparator<Attachment> comparator1 = (left1, right1) -> compare(left1, right1);
+        Comparator<Attachment> comparator1 = AttachmentSort::compare;
         attachments.sort(comparator1);
         System.out.println(attachments);
     }
