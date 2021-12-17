@@ -32,7 +32,6 @@ public class FunctionalInterfaces {
         Function<String, String> func = String::toUpperCase;
         for (String s : strings) {
             con.accept(func.apply(s));
-           // System.out.println("Заменили на " + func.apply(s));
         }
     }
 }
