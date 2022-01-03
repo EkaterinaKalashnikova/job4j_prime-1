@@ -77,7 +77,7 @@ public class BankService {
      * @param srcPassport   - Passport data of the client account pull
      * @param srcRequisite  - Requisite data of the client account pull
      * @param destPassport  - Passport data of the client account put
-     * @param dеstRequisite - Requisite data of the client account put
+     * @param dstRequisite - Requisite data of the client account put
      * @param amount        - amount of money transferred
      * @return rsl
      */
