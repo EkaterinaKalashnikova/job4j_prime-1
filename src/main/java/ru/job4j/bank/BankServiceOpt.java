@@ -43,7 +43,7 @@ public class BankServiceOpt {
         Optional<User> user = users.keySet().stream()
                 .filter(p -> p.getPassport().equals(passport))
                 .findFirst();
-        return user.orElse(user.orElse(null));
+        return user.orElseGet(() -> user.orElse(null));
     }
 
     /**
@@ -54,9 +54,7 @@ public class BankServiceOpt {
      * @return received list of accounts by index
      */
     public Account findByRequisite(String passport, String requisite) {
-        User user = findByPassport(passport);
-        List<Account> accounts = users.get(user);
-        accounts.indexOf(new Account(requisite, 0));
+        var accounts = users.get(findByPassport(passport));
         return accounts.stream()
                 .filter(account -> account.getRequisite().equals(requisite))
                 .findFirst()
