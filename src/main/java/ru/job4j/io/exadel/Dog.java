@@ -1,11 +1,8 @@
 package ru.job4j.io.exadel;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.*;
+import java.util.*;
+import java.util.regex.Matcher;
 import java.util.stream.Collectors;
 
 public class Dog {
@@ -15,13 +12,40 @@ public class Dog {
         int x = 0;
         int y = 0;
         try (BufferedReader in = new BufferedReader(new FileReader("C:\\projects\\job4j_primera\\src\\main\\java\\ru\\job4j\\io\\exadel\\input1.txt"))) {
-            in.lines().forEach(System.out::println);
+            String str;
+            while ((str = in.readLine()) != null) {
+                String[] list = str.split(",");
+                input1.add(Integer.parseInt(list[0]));
+                input1.add(Integer.parseInt(list[1]));
+                in.readLine();
+                System.out.println(input1);
+            }
+            x = input1.get(0);
+            y = input1.get(1);
+            System.out.println(x);
+            System.out.println(y);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
-        try (BufferedReader in = new BufferedReader(new FileReader("C:\\projects\\job4j_primera\\src\\main\\java\\ru\\job4j\\io\\exadel\\input2.txt"))) {
-            in.lines().forEach(System.out::println);
+        try (BufferedReader in = new BufferedReader(new FileReader("C:\\projects\\job4j_primera\\src\\main\\java\\ru\\job4j\\io\\exadel\\input2.txt"));
+                BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\projects\\job4j_primera\\src\\main\\java\\ru\\job4j\\io\\exadel\\output.txt"))) {
+                    String str;
+                    while((str =in.readLine())!=null) {
+                        for (int i = 0; i < str.length(); i++) {
+                            if (i / x == 0) {
+                                bw.write("Hot ");
+                            }
+                            if (i / y == 0) {
+                                bw.write("Dog ");
+                            }
+                            if (i / x == 0 && i / y == 0) {
+                                bw.write("HotDog ");
+                            } else {
+                                bw.write(i + " ");
+                            }
+                        }
+                    }
         } catch (Exception e) {
             e.printStackTrace();
         }
