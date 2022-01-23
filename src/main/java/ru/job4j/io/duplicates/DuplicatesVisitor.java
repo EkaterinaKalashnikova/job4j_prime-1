@@ -16,11 +16,12 @@ public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
         FileProperty fileProperty = new FileProperty(attrs.size(), file.getFileName().toString());
         if (unicElement.contains(fileProperty)) {
             array.add(fileProperty);
+            FileProperty property = unicElement.stream().filter(array -> Objects.equals(array, fileProperty)).findFirst().get();
+            System.out.println(property.getName());
             System.out.println(file.toAbsolutePath());
         }
         unicElement.add(fileProperty);
         return super.visitFile(file, attrs);
     }
 }
-
 
