@@ -48,33 +48,37 @@ public class CSVReader {
         CSVReader reader = new CSVReader();
         reader.validate(argsName);
         StringBuilder data = new StringBuilder();
-        Scanner scanner = new Scanner(new File(reader.getPathToCSV()));
-        String line = scanner.nextLine();
-        String[] header = line.split(";");
-        String[] keys = argsName.get("filter").split(",");
-        List<Integer> indexes = new ArrayList<>();
-        for (int i = 0; i < keys.length; i++) {
-            for (int j = 0; j < header.length; j++) {
-                if (keys[i].equals(header[j])) {
-                    indexes.add(j);
+        try {
+            Scanner scanner = new Scanner(new File(reader.getPathToCSV()));
+            String line = scanner.nextLine();
+            String[] header = line.split(";");
+            String[] keys = argsName.get("filter").split(",");
+            List<Integer> indexes = new ArrayList<>();
+            for (int i = 0; i < keys.length; i++) {
+                for (int j = 0; j < header.length; j++) {
+                    if (keys[i].equals(header[j])) {
+                        indexes.add(j);
+                    }
                 }
             }
-        }
-        indexes.forEach(v -> data.append(header[v]).append(";"));
-        data.replace(data.length() - 1, data.length(), "");
-        data.append(System.lineSeparator());
-        while (scanner.hasNext()) {
-            line = scanner.nextLine();
-            String[] values = line.split(";");
-            indexes.forEach(v -> data.append(values[v]).append(";"));
+            indexes.forEach(v -> data.append(header[v]).append(";"));
             data.replace(data.length() - 1, data.length(), "");
             data.append(System.lineSeparator());
+            while (scanner.hasNext()) {
+                line = scanner.nextLine();
+                String[] values = line.split(";");
+                indexes.forEach(v -> data.append(values[v]).append(";"));
+                data.replace(data.length() - 1, data.length(), "");
+                data.append(System.lineSeparator());
+            }
+            /*scanner.close(); */
+            reader.write(data.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        scanner.close();
-        reader.write(data.toString());
     }
 
-    public static void main(String[] args) throws Exception {
+        public static void main(String[] args) throws Exception {
         handle(ArgsName.of(args, 4, "Something went wrong!!!"));
     }
 }
