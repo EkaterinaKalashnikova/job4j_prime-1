@@ -10,7 +10,7 @@ import java.nio.file.Files;
 
 public class CSVReaderTest {
     @Rule
-    public TemporaryFolder temporaryFolder = new TemporaryFolder();
+    public TemporaryFolder temporaryFolder = new TemporaryFolder(new File(".\\src\\main\\resources"));
 
     @Test
     public void whenFilterTwoColumns() throws Exception {
@@ -24,8 +24,8 @@ public class CSVReaderTest {
         File file = temporaryFolder.newFile("source.csv");
         File target = temporaryFolder.newFile("target.csv");
         ArgsName argsName = ArgsName.of(new String[]{
-                "-path=" + file.getAbsolutePath(), "-delimiter=;", "-out="
-                + target.getAbsolutePath(), "-filter=name,age"
+                "-path=" + file.getParentFile().getName() + "\\" + file.getName(), "-delimiter=;", "-out="
+                + target.getParentFile().getName() + "\\" + target.getName(), "-filter=name,age"
         }, 4, "Something went wrong!!!");
         Files.writeString(file.toPath(), data);
         String expected = String.join(

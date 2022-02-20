@@ -9,28 +9,30 @@ public class CSVReader {
     private String pathToCSV;
     private String pathToOUT;
 
-    public void setPathToCSV(String pathToCSV) {
+    private void setPathToCSV(String pathToCSV) {
         this.pathToCSV = pathToCSV;
     }
 
-    public void setPathToOUT(String pathToOUT) {
+    private void setPathToOUT(String pathToOUT) {
         this.pathToOUT = pathToOUT;
     }
 
-    public String getPathToCSV() {
+    private String getPathToCSV() {
         return pathToCSV;
     }
 
-    public String getPathToOUT() {
+    private String getPathToOUT() {
         return pathToOUT;
     }
 
-    public void write(String data) throws IOException {
+    private void write(String data) {
         if ("stdout".equals(getPathToOUT())) {
             System.out.println(data);
         } else {
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(getPathToOUT()))) {
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter("src\\main\\resources\\" + getPathToOUT()))) {
                 writer.write(data);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }
@@ -44,19 +46,18 @@ public class CSVReader {
         setPathToOUT(argsName.get("out"));
     }
 
-    public static void handle(ArgsName argsName) throws Exception {
+    protected static void handle(ArgsName argsName) {
         CSVReader reader = new CSVReader();
         reader.validate(argsName);
         StringBuilder data = new StringBuilder();
-        try {
-            Scanner scanner = new Scanner(new File(reader.getPathToCSV()));
+        try (Scanner scanner = new Scanner(new File("src\\main\\resources\\" + reader.getPathToCSV()))) {
             String line = scanner.nextLine();
             String[] header = line.split(";");
             String[] keys = argsName.get("filter").split(",");
             List<Integer> indexes = new ArrayList<>();
-            for (int i = 0; i < keys.length; i++) {
+            for (String key : keys) {
                 for (int j = 0; j < header.length; j++) {
-                    if (keys[i].equals(header[j])) {
+                    if (key.equals(header[j])) {
                         indexes.add(j);
                     }
                 }
@@ -71,16 +72,17 @@ public class CSVReader {
                 data.replace(data.length() - 1, data.length(), "");
                 data.append(System.lineSeparator());
             }
-            /*scanner.close(); */
             reader.write(data.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-        public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         handle(ArgsName.of(args, 4, "Something went wrong!!!"));
     }
 }
+
+
 
 
