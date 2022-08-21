@@ -6,7 +6,6 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 public class StartUITest {
-
     @Test
     public void whenAddItem() {
         String[] answers = {"Fix PC"};
@@ -63,7 +62,7 @@ public class StartUITest {
                         + "0. Edit item" + ln
                         + "1. Exit Program" + ln
                         + "=== Edit item ===" + ln
-                        + "Заявка изменена успешно." + ln
+                        + "Edit item is done." + ln
                         + "Menu:" + ln
                         + "0. Edit item" + ln
                         + "1. Exit Program" + ln

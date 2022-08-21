@@ -17,10 +17,11 @@ public class DeleteAction implements UserAction {
         out.println("=== Delete item ===");
         int id = input.askInt("Enter id: ");
         if (tracker.delete(id)) {
-            System.out.println("Заявка удалена успешно.");
+            out.println("Delete item is down.");
         } else {
-            System.out.println("Ошибка удаления заявки.");
+            out.println("Error delete");
         }
         return true;
     }
 }
+

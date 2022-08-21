@@ -53,6 +53,9 @@ public class Item {
                 + ", created=" + created.format(FORMATTER)
                 + '}';
     }
+
+    public void setId(String generateId) {
+    }
 }
 
 
