@@ -5,7 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 
 public class AttachmentSort {
-    public static void main(String[] args) {
+   /* public static void main(String[] args) {
         List<Attachment> attachments = Arrays.asList(
                 new Attachment("image 1", 100),
                 new Attachment("image 2", 34),
@@ -25,5 +25,5 @@ public class AttachmentSort {
 
     private static int compare(Attachment left1, Attachment right1) {
         return left1.toString().compareTo(right1.toString());
-    }
+    }*/
 }
